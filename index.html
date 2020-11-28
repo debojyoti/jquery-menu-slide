@@ -66,6 +66,9 @@
         </div>
         <!-- Add Pagination -->
         <div class="swiper-pagination"></div>
+        <!-- Add Arrows -->
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
     </div>
 
     <!-- Swiper JS -->
@@ -79,7 +82,36 @@
                 el: '.swiper-pagination',
                 clickable: true,
             },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
         });
+        // Listen for orientation changes
+        window.addEventListener("orientationchange", function () {
+            verifyCurrentOrientationMode(true);
+        }, false);
+        verifyCurrentOrientationMode();
+        function verifyCurrentOrientationMode(hasChanged = false) {
+            let currentMode = null;
+            if (window.matchMedia("(orientation: portrait)").matches) {
+                if (hasChanged) {
+                    currentMode = 'Landscape';
+                } else {
+                    currentMode = 'Portrait';
+                }
+            }
+            if (window.matchMedia("(orientation: landscape)").matches) {
+                if (hasChanged) {
+                    currentMode = 'Portrait';
+                } else {
+                    currentMode = 'Landscape';
+                }
+            }
+            if (currentMode === 'Landscape') {
+                // Determine height
+            }
+        }
     </script>
 </body>
 
